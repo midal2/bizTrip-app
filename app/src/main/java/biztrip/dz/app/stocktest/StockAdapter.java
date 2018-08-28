@@ -3,6 +3,7 @@ package biztrip.dz.app.stocktest;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,6 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockItemHol
         this.stockInfoList = stockInfoList;
     }
 
-    //Dataset
     private List<StockInfo> stockInfoList;
 
     public StockAdapter(){
@@ -30,16 +30,25 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockItemHol
 
     private void createDummy() {
         stockInfoList = new LinkedList<>();
+
         StockInfo stockInfo = new StockInfo();
-        stockInfo. col1 = "1";
-        stockInfo.col2 = "2";
-        stockInfo.col3 = "3";
+        stockInfo.title    = "sample1";
+        stockInfo.debi     = "sample1";
+        stockInfo.dungrak  = "sample1";
+        stockInfo.updatedt = "sample1";
+        stockInfo.curjuka  = "sample1";
+        stockInfo.lowjuka  = "sample1";
+        stockInfo.highjuka = "sample1";
         stockInfoList.add(stockInfo);
 
         stockInfo = new StockInfo();
-        stockInfo.col1 = "11";
-        stockInfo.col2 = "22";
-        stockInfo.col3 = "33";
+        stockInfo.title    = "sample2";
+        stockInfo.debi     = "sample2";
+        stockInfo.dungrak  = "sample2";
+        stockInfo.updatedt = "sample2";
+        stockInfo.curjuka  = "sample2";
+        stockInfo.lowjuka  = "sample2";
+        stockInfo.highjuka = "sample2";
         stockInfoList.add(stockInfo);
     }
 
@@ -62,9 +71,13 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockItemHol
     public void onBindViewHolder(@NonNull StockItemHolder viewHolder, int i) {
         StockInfo stockInfo =  stockInfoList.get(i);
 
-        viewHolder.col1.setText(stockInfo.col1);
-        viewHolder.col2.setText(stockInfo.col2);
-        viewHolder.col3.setText(stockInfo.col3);
+        viewHolder.title.setText(stockInfo.title);
+        viewHolder.debi.setText(stockInfo.debi);
+        viewHolder.dungrak.setText(stockInfo.dungrak);
+        viewHolder.updatedt.setText(stockInfo.updatedt);
+        viewHolder.curjuka.setText(stockInfo.curjuka);
+        viewHolder.lowjuka.setText(stockInfo.lowjuka);
+        viewHolder.highjuka.setText(stockInfo.highjuka);
 
     }
 
@@ -74,26 +87,37 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockItemHol
     }
 
 
-    public static class StockInfo {
-        public String col1;
-        public String col2;
-        public String col3;
+    class StockInfo {
+        public String title;
+        public String debi;
+        public String dungrak;
+        public String updatedt;
+        public String curjuka;
+        public String lowjuka;
+        public String highjuka;
     }
 
 
     class StockItemHolder extends RecyclerView.ViewHolder{
-        public TextView col1;
-        public TextView col2;
-        public TextView col3;
+        public TextView debi;
+        public TextView title;
+        public TextView dungrak;
+        public TextView updatedt;
+        public TextView curjuka;
+        public TextView lowjuka;
+        public TextView highjuka;
 
         public StockItemHolder(@NonNull View itemView) {
             super(itemView);
 
-            col1 = itemView.findViewById(R.id.tvCol1);
-            col2 = itemView.findViewById(R.id.tvCol2);
-            col3 = itemView.findViewById(R.id.tvCol3);
+            title       = itemView.findViewById(R.id.title);
+            debi        = itemView.findViewById(R.id.debi);
+            dungrak     = itemView.findViewById(R.id.dungrak);
+            updatedt    = itemView.findViewById(R.id.updatedt);
+            curjuka     = itemView.findViewById(R.id.curjuka);
+            lowjuka     = itemView.findViewById(R.id.lowjuka);
+            highjuka    = itemView.findViewById(R.id.highjuka);
         }
     }
 
 }
-
