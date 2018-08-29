@@ -87,7 +87,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockItemHol
     }
 
 
-    class StockInfo {
+    static class StockInfo {
         public String title;
         public String debi;
         public String dungrak;

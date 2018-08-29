@@ -12,6 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class MyFragment extends Fragment {
+
+    public StockAdapter getStockAdapter() {
+        return stockAdapter;
+    }
+
+    private StockAdapter stockAdapter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -19,7 +26,7 @@ public class MyFragment extends Fragment {
         View view = inflater.inflate(R.layout.stock_list, null);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
 
-        StockAdapter stockAdapter = new StockAdapter();
+        stockAdapter = new StockAdapter();
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(stockAdapter);
 

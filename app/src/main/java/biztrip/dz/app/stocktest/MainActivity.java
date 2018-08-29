@@ -1,6 +1,7 @@
 package biztrip.dz.app.stocktest;
 
 import android.graphics.pdf.PdfDocument;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -24,7 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPager viewPager = findViewById(R.id.view_pager);
         PageAdapter pageAdapter = new PageAdapter(getSupportFragmentManager());
-        pageAdapter.addFragement(new MyFragment(), "첫번째");
+
+        final MyFragment myFragment = new MyFragment();
+        pageAdapter.addFragement(myFragment, "첫번째");
         pageAdapter.addFragement(new MyFragment(), "두번째");
         pageAdapter.addFragement(new MyFragment(), "세번째");
         pageAdapter.addFragement(new MyFragment(), "네번째");
@@ -33,6 +36,23 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+
+        FloatingActionButton fab = findViewById(R.id.fab_refresh);
+        fab.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Log.d("Button", "테스트ssss!!!!!");
+                AsyncStockDataGather asyncStockDataGather =
+                        new AsyncStockDataGather(getResources().getString(R.string.stock_server_url),
+                                getResources().getString(R.string.stock_svc_info));
+
+                asyncStockDataGather.execute(myFragment.getStockAdapter());
+                Log.d("Button", "테스트eee!!!!!");
+
+
+            }
+        });
 
 
         /*RecyclerView recyclerView = findViewById(R.id.recyclerView);
