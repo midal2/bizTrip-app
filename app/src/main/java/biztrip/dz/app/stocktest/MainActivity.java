@@ -1,14 +1,9 @@
 package biztrip.dz.app.stocktest;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-
-import java.util.LinkedList;
-import java.util.List;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private StockAdapter stockAdapter;
@@ -18,35 +13,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        stockAdapter = new StockAdapter();
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        PagerAdapter pageAdapter = new PagerAdapter(getSupportFragmentManager());
 
-        recyclerView.setAdapter(stockAdapter);
+        pageAdapter.mFragments.add(new TestList());
+        pageAdapter.mTitle.add("첫번째");
 
-        Button button =  findViewById(R.id.button);
-        button.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                changeDataSet();
-            }
+        pageAdapter.mFragments.add(new WebViewFragment());
+        pageAdapter.mTitle.add("두번째");
 
-            private void changeDataSet() {
-                List<StockAdapter.StockInfo> stockInfoList = new LinkedList<>();
-                StockAdapter.StockInfo stockInfo = new StockAdapter.StockInfo();
-                stockInfo.col1 = "t1";
-                stockInfo.col2 = "t2";
-                stockInfo.col3 = "t3";
-                stockInfoList.add(stockInfo);
+        viewPager.setAdapter(pageAdapter);
 
-                stockInfo = new StockAdapter.StockInfo();
-                stockInfo.col1 = "t4";
-                stockInfo.col2 = "t5";
-                stockInfo.col3 = "t6";
-                stockInfoList.add(stockInfo);
+        TabLayout tabLayout = findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
 
-                stockAdapter.setStockInfoList(stockInfoList);
-                stockAdapter.notifyDataSetChanged();
-            }
-        });
+//        viewPager.addF
+
     }
 }
